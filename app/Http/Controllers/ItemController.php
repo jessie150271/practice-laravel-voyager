@@ -29,14 +29,25 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         //POST
-        $item = new Item([
-            'category' => 1,
-            'name' => 'ItemController Store',
-            'photo' => 'https://www.gravatar.com/avatar/d93c49405a6b8f3fecc5b88448f36807?s=96',
-            'price' => 5000,
-            'sort' => 99
-        ]);
-        $item->save();
+        // $item = new Item([
+        //     'category' => 1,
+        //     'name' => 'ItemController Store',
+        //     'photo' => 'https://www.gravatar.com/avatar/d93c49405a6b8f3fecc5b88448f36807?s=96',
+        //     'price' => 5000,
+        //     'sort' => 99
+        // ]);
+        Item::create($request->all());
+        // $data = $request->all();
+        // return $data;
+        // $item = new Item([
+        //     'category' => $request->input('category'),
+        //     'name' => $request->input('name'),
+        //     'photo' => $request->input('photo'),
+        //     'price' => $request->input('price'),
+        //     'sort' => $request->input('sort')
+        // ]);
+
+        // $item->save();
         return redirect('/');
     }
 
@@ -46,10 +57,10 @@ class ItemController extends Controller
      * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Item $item)
     {
         //單筆
-        $item = Item::findOrFail($id);
+        $item = Item::findOrFail($item->id);
         return $item;
     }
 
@@ -60,13 +71,13 @@ class ItemController extends Controller
      * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Item $item)
     {
         //更新
-        $item = Item::find($id);
-        $item->price = 0;
-        $item->save();
-        return redirect('/items/'.$id);
+        $updateItem = Item::find($item->id);
+        $updateItem->price = 0;
+        $updateItem->save();
+        return redirect('/items/' . $item->id);
     }
 
     /**
@@ -80,6 +91,6 @@ class ItemController extends Controller
         //
         // $item->delete(22);
         Item::destroy($item->id);
-        return 'destroy done.'.$item->id;
+        return 'destroy done.' . $item->id;
     }
 }
