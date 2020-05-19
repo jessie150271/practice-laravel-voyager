@@ -24,3 +24,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('redirect', function ($id) {
+    return redirect('index');
+});
+
+Route::get('/items', ['as'=>'items.index','uses'=>'ItemController@index']);
+Route::get('/items/{id}', ['as'=>'items.show','uses'=>'ItemController@show']);
+Route::post('/items', ['as'=>'items.store','uses'=>'ItemController@store']);
+Route::put('/items/{id}', ['as'=>'items.update','uses'=>'ItemController@update']);
+Route::delete('/items/{item}', ['as'=>'items.destroy','uses'=>'ItemController@destroy']);
