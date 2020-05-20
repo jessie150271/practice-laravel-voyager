@@ -46,9 +46,10 @@ class ItemController extends Controller
         //     'price' => $request->input('price'),
         //     'sort' => $request->input('sort')
         // ]);
-
+        
         // $item->save();
-        return redirect('/');
+        // return redirect('/');
+        return 'insert sucess.';
     }
 
     /**

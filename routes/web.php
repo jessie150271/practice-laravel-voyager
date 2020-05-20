@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,3 +34,7 @@ Route::get('/items/{item}', ['as'=>'items.show','uses'=>'ItemController@show']);
 Route::post('/items', ['as'=>'items.store','uses'=>'ItemController@store']);
 Route::put('/items/{item}', ['as'=>'items.update','uses'=>'ItemController@update']);
 Route::delete('/items/{item}', ['as'=>'items.destroy','uses'=>'ItemController@destroy']);
+
+//Test ForeignKey
+Route::resource('fkcategories', 'TestForeignCategoryController');
+Route::apiResource('fkitems', 'TestForeignItemController');
