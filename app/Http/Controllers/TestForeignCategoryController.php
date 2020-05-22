@@ -44,9 +44,9 @@ class TestForeignCategoryController extends Controller
      * @param  \App\TestForeignCategory  $testForeignCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(TestForeignCategory $cgy)
+    public function show($id)
     {
-        // $item = TestForeignCategory::findOrFail(2);
+         $cgy = TestForeignCategory::findOrFail($id);
         return $cgy->items;
     }
 

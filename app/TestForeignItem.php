@@ -14,4 +14,7 @@ class TestForeignItem extends Model
         return $this->belongsTo(TestForeignCategory::class);
         // return $this->belongsTo(TestForeignCategory::class,'category_id','id');
     }
+    public function orders(){
+        return $this->belongsToMany(TestForeignOrder::class)->withTimeStamps();
+    }
 }

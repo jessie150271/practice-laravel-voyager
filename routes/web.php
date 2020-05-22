@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -38,3 +43,10 @@ Route::delete('/items/{item}', ['as'=>'items.destroy','uses'=>'ItemController@de
 //Test ForeignKey
 Route::resource('fkcategories', 'TestForeignCategoryController');
 Route::apiResource('fkitems', 'TestForeignItemController');
+Route::get('checkout', 'TestForeignOrderController@checkout');
+Route::get('modifyorder', 'TestForeignOrderController@modifyOrder');
+Route::resource('orders', 'TestForeignOrderController');
+
+Route::get('/menu', function () {
+    return menu('frontend','menu');
+});

@@ -46,8 +46,9 @@ class TestForeignItemController extends Controller
      */
     public function show($id)
     {
-        $item = TestForeignItem::findOrFail($id);
-        dd($item->category->name);
+        // $item = TestForeignItem::findOrFail($id);
+        // dd($item->category->name);
+        $item = TestForeignItem::with('category')->find($id); //category_id -> category 不是table名稱
         return $item;
     }
 
